@@ -1,0 +1,31 @@
+version: "3.7"
+
+volumes:
+  postresql_data: {}
+  redis_data: {}
+
+services:
+  postgresql:
+    image: "postgres:12.2"
+    container_name: "sde_checker_postgresql"
+    restart: "unless-stopped"
+    volumes:
+      - "postresql_data:/var/lib/postgresql/data"
+    ports:
+      - "5432:5432"
+
+  redis:
+    image: "redis:5.0.7"
+    container_name: "sde_checker_redis"
+    restart: "unless-stopped"
+    volumes:
+      - "redis_data:/data"
+    ports:
+      - "6379:6379"
+
+  swagger_ui:
+    image: "swaggerapi/swagger-ui:v3.25.0"
+    container_name: "sde_checker_swagger_ui"
+    restart: "unless-stopped"
+    ports:
+      - "8080:8080"
