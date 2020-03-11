@@ -1,0 +1,2 @@
+class Checksum < ApplicationRecord
+end
